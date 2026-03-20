@@ -5,10 +5,18 @@ type CounterState ={
     count: number
 }
 
-type CounterAction ={
-    type: 'increment' | 'decrement'
+type UpdateAction ={
+    type: 'increment'| 'decrement'
     payload: number
 }
+
+type ResetAction ={
+    type: 'reset'
+}
+
+//discriminated unions
+type CounterAction = UpdateAction | ResetAction
+
 const initialState = { count:0 }
 
 function reducer(state: CounterState, action:CounterAction){
@@ -17,12 +25,14 @@ function reducer(state: CounterState, action:CounterAction){
             return{ count: state.count + action.payload}
         case 'decrement':
             return{ count: state.count - action.payload}
+        case 'reset':
+            return initialState
         default:
             return state
     }
 }
 
-export const Counter = () =>{
+export const CounterImprovised = () =>{
 
     const[state, dispatch] = useReducer(reducer, initialState)
     return(
@@ -34,6 +44,7 @@ export const Counter = () =>{
         <button onClick ={()=> dispatch({type: 'decrement', payload:10})}>
             Decrement 10
         </button>
+        <button onClick ={()=> dispatch({type: 'reset'})}>Reset</button>
         </>
     )
 }
