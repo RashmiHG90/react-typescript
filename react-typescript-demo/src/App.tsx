@@ -16,6 +16,11 @@ import { UserContextProvider } from './components/context/UserContext'
 import {User} from './components/context/User'
 import {UserContextAssertionProvider} from './components/context/UserContextAssertion'
 
+import { MutableRef } from './components/ref/MutableRef'
+import { DomRef } from './components/ref/DomRef'
+
+import {Counter} from './components/class/Counter'
+
 
 function App() {
 
@@ -71,6 +76,15 @@ function App() {
            <UserContextAssertionProvider> 
             <User/>
            </UserContextAssertionProvider>
+
+           <DomRef/>
+           <MutableRef/>
+
+          <hr />
+
+          <Counter message = 'The count value is'/>
+
+
      </div>
           
     </>
